@@ -1,0 +1,6 @@
+quarkus:
+  log:
+    level: INFO
+    category:
+      "com.osetrm":
+        level: INFO

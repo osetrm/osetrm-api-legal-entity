@@ -1,0 +1,12 @@
+quarkus:
+  log:
+    level: INFO
+    category:
+      "com.osetrm":
+        level: DEBUG
+  keycloak:
+    devservices:
+      users:
+        test: Pass123!
+      roles:
+        test: OSETRM_LEGAL_ENTITY_READ,OSETRM_LEGAL_ENTITY_WRITE

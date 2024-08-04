@@ -1,1 +1,18 @@
-{}
+quarkus:
+  banner:
+    enabled: false
+  swagger-ui:
+    always-include: true
+    operations-sorter: method
+
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: osetrm Legal Entity API
+          version: 0.0.1
+          description: API for retrieving legal entities
+          license:
+            name: Apache 2.0
+            url: http://www.apache.org/licenses/LICENSE-2.0.html
