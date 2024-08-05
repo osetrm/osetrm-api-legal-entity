@@ -1,4 +1,4 @@
-package com.osetrm.api.error;
+package com.osetrm.api.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

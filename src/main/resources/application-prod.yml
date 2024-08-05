@@ -4,3 +4,9 @@ quarkus:
     category:
       "com.osetrm":
         level: INFO
+  hibernate-orm:
+    log:
+      sql: false
+  flyway:
+    migrate-at-start: true
+    locations: db/migration

@@ -1,4 +1,4 @@
-package com.osetrm.api.error;
+package com.osetrm.api.exception;
 
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -10,9 +10,9 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 @Provider
-public class ThrowableMapper implements ExceptionMapper<Throwable> {
+public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
 
-    private static final Logger logger = LoggerFactory.getLogger(ThrowableMapper.class);
+    private static final Logger logger = LoggerFactory.getLogger(ThrowableExceptionMapper.class);
 
     @Override
     public Response toResponse(Throwable e) {

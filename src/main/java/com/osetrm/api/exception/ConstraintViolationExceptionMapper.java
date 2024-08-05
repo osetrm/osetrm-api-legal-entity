@@ -1,4 +1,4 @@
-package com.osetrm.api.error;
+package com.osetrm.api.exception;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Provider
-public class ConstraintViolationExceptionHandler implements ExceptionMapper<ConstraintViolationException> {
+public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
 
     @Override
     public Response toResponse(ConstraintViolationException e) {

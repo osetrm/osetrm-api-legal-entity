@@ -7,6 +7,6 @@ quarkus create app --wrapper --no-code \
 
 ```shell
 quarkus ext add smallrye-openapi
-quarkus ext add hibernate-validator
+quarkus ext add hibernate-validator,hibernate-orm-panache,jdbc-postgresql,flyway
 ```
 

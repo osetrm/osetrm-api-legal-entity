@@ -1,6 +1,9 @@
 quarkus:
   banner:
     enabled: false
+  hibernate-orm:
+    database:
+      generation: none
   swagger-ui:
     always-include: true
     operations-sorter: method

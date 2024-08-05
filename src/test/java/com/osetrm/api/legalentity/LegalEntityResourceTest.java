@@ -1,7 +1,7 @@
 package com.osetrm.api.legalentity;
 
 import com.osetrm.api.Role;
-import com.osetrm.api.error.ErrorResponse;
+import com.osetrm.api.exception.ErrorResponse;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
 import io.restassured.http.ContentType;
@@ -53,6 +53,16 @@ public class LegalEntityResourceTest {
     }
 
     @Test
+    @TestSecurity(user = "testUser", roles = {Role.OSETRM_LEGAL_ENTITY_READ})
+    public void getByIdNotFound() {
+        given()
+                .when()
+                .get("/v1/legal-entities/{legalEntityIdentifier}", 8675309)
+                .then()
+                .statusCode(jakarta.ws.rs.core.Response.Status.NOT_FOUND.getStatusCode());
+    }
+
+    @Test
     @TestSecurity(user = "testUser", roles = Role.OSETRM_LEGAL_ENTITY_WRITE)
     public void postFailNoLegalName() {
         LegalEntity legalEntity = new LegalEntity(createLegalEntityIdentifier(), null);
@@ -64,7 +74,7 @@ public class LegalEntityResourceTest {
                 .statusCode(jakarta.ws.rs.core.Response.Status.BAD_REQUEST.getStatusCode())
                 .extract().as(ErrorResponse.class);
         assertNotNull(errorResponse);
-        assertEquals(errorResponse.errorMessages().get(1).message(), "Legal Entity's legal name is required");
+        assertEquals(errorResponse.errorMessages().get(0).message(), "Legal Entity's legal name is required");
     }
 
 
@@ -73,7 +83,7 @@ public class LegalEntityResourceTest {
     }
 
     LegalEntityIdentifier createLegalEntityIdentifier() {
-        return new LegalEntityIdentifier(LegalEntityIdentifierType.LEI, "TEST" + RandomStringUtils.randomAlphabetic(16));
+        return new LegalEntityIdentifier(LegalEntityIdentifierType.LEID, "TEST" + RandomStringUtils.randomAlphabetic(16));
     }
 
 }
