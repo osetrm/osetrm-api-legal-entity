@@ -1,9 +1,54 @@
 # osetrm-api-legal-entity
 
-Versioning: 
-* Maven artifact coordinates' version
-* OpenAPI spec version
-* image version/tag
+
+## Run Locally in Dev Mode
+```shell script
+./mvnw clean quarkus:dev
+```
+
+Log in with `user - test:Pass123!`
+
+## Build Image Locally
+
+```shell
+./mvnw clean package
+podman build -f Containerfile -t quay.io/osetrm/osetrm-api-legal-entity:latest .
+```
+
+## Run Locally with Podman
+
+```shell
+podman-compose up -d
+podman-compose down
+```
+
+podman run -it --rm --network osetrm-api-legal-entity_default wbitt/network-multitool /bin/bash
+
+```shell
+export access_token=$(\
+  curl --insecure -X POST http://localhost:8081/realms/osetrm-test/protocol/openid-connect/token \
+  --user osetrm-test-api:osetrm-test-api-secret \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -d 'username=test&password=Pass123!&grant_type=password' | jq --raw-output '.access_token' \
+)
+   
+curl -v -X GET \
+  http://localhost:8080/v1/legal-entities \
+  -H "Authorization: Bearer "$access_token
+```
+
+```shell
+export access_token=$(\
+  curl --insecure -X POST http://osetrm-keycloak:8081/realms/osetrm-test/protocol/openid-connect/token \
+  --user osetrm-test-api:osetrm-test-api-secret \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -d 'username=test&password=Pass123!&grant_type=password' | jq --raw-output '.access_token' \
+)
+   
+curl -v -X GET \
+  http://localhost:8080/v1/legal-entities \
+  -H "Authorization: Bearer "$access_token
+```
 
 
 

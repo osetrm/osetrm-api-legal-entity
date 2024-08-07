@@ -1,5 +1,6 @@
 package com.osetrm.api.exception;
 
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
@@ -15,9 +16,12 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
     private static final Logger logger = LoggerFactory.getLogger(ThrowableExceptionMapper.class);
 
     @Override
-    public Response toResponse(Throwable e) {
+    public Response toResponse(Throwable throwable) {
+        if (throwable instanceof NotFoundException) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
         String errorId = UUID.randomUUID().toString();
-        logger.error("errorId[{}]", errorId, e);
+        logger.error("errorId[{}]", errorId, throwable);
         String defaultErrorMessage = ResourceBundle.getBundle("ValidationMessages").getString("System.error");
         ErrorResponse.ErrorMessage errorMessage = new ErrorResponse.ErrorMessage(defaultErrorMessage);
         ErrorResponse errorResponse = new ErrorResponse(errorId, errorMessage);

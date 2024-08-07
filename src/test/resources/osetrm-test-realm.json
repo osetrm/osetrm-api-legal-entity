@@ -1,0 +1,42 @@
+{
+  "realm": "osetrm-test",
+  "enabled": true,
+  "sslRequired": "none",
+  "clients": [
+    {
+      "clientId": "osetrm-test-api",
+      "publicClient": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "osetrm-test-api-secret",
+      "directAccessGrantsEnabled": true,
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "attributes": {
+        "post.logout.redirect.uris": "*"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "test",
+      "email": "test@test.com",
+      "firstName": "Test",
+      "lastName": "Test",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Pass123!"
+        }
+      ],
+      "realmRoles": [
+        "OSTERM_LEGAL_ENTITY_READ",
+        "OSTERM_LEGAL_ENTITY_WRITE"
+      ]
+    }
+  ]
+}

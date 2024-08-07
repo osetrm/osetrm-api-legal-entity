@@ -1,9 +1,15 @@
 quarkus:
   banner:
     enabled: false
+  datasource:
+    devservices:
+      image-name: 'docker.io/library/postgres:16'
   hibernate-orm:
     database:
       generation: none
+  http:
+    non-application-root-path: /
+    cors: true
   swagger-ui:
     always-include: true
     operations-sorter: method

@@ -14,6 +14,7 @@ public interface LegalEntityMapper {
     @Mapping(source = "legalEntityIdentifier.legalEntityIdentifierType", target = "legalEntityIdentifierType")
     LegalEntityEntity toEntity(LegalEntity domain);
 
+    @Mapping(source = "legalEntityIdentifier.legalEntityIdentifierType", target = "legalEntityIdentifierType")
     void copy(LegalEntity source, @MappingTarget LegalEntityEntity target);
 
     default LegalEntityIdentifier map(LegalEntityEntity entity){
