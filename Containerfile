@@ -1,8 +1,7 @@
-FROM registry.access.redhat.com/ubi9/openjdk-21:1.20
+FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.20
 
 ENV LANGUAGE='en_US:en'
 
-# We make four distinct layers so if there are application changes the library layers can be re-used
 COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
 COPY --chown=185 target/quarkus-app/*.jar /deployments/
 COPY --chown=185 target/quarkus-app/app/ /deployments/app/

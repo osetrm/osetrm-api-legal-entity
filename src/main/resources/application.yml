@@ -9,7 +9,6 @@ quarkus:
       generation: none
   http:
     non-application-root-path: /
-    cors: true
   swagger-ui:
     always-include: true
     operations-sorter: method
