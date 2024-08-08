@@ -11,5 +11,3 @@ DevUI at <http://localhost:8080/dev-ui/>.
 ./mvnw clean package
 podman build -f Containerfile -t quay.io/osetrm/osetrm-api-legal-entity:latest .
 ```
-
-Test
